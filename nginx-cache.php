@@ -236,8 +236,12 @@ class NginxCache {
 			return $path_error;
 		}
 
+		do_action( 'nginx_cache/before_purge' );
+
 		// remove cache directory (recursively)
 		$wp_filesystem->rmdir( $path, true );
+
+		do_action( 'nginx_cache/after_purge' );
 
 		return true;
 
